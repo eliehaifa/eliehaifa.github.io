@@ -1,0 +1,476 @@
+/* Reset and Basic Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #36b2bc, #fe00a5);
+    overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+h1 { font-size: 3rem; color: #333; } /* Darker color */
+h2 { font-size: 2.5rem; color: #333; }
+h3 { font-size: 1.8rem; color: #333; }
+
+p {
+    margin-bottom: 1.5rem;
+    color: rgba(51, 51, 51, 0.9); /* Darker color */
+}
+
+/* Header */
+header {
+    background: rgba(255, 255, 255, 0.50); /* Adjusted opacity */
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #333; /* Darker color */
+}
+
+.menu-toggle {
+    font-size: 2rem;
+    color: #555; /* Darker color */
+    cursor: pointer;
+    display: none; /* Hidden by default */
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+}
+
+.nav-list li {
+    margin-left: 2.5rem;
+}
+
+.nav-list a {
+    color: #333; /* Darker color for better contrast */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-list a:hover {
+    color: #ff758c; /* Color change on hover */
+}
+
+/* Sub-menu */
+.sub-menu {
+    position: relative;
+}
+
+.sub-menu-button {
+    background: transparent;
+    border: none;
+    color: #333; /* Darker color */
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.sub-menu-list {
+    list-style: none;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    border-radius: 5px;
+    display: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.sub-menu-list.active {
+    display: block; /* Show when active */
+}
+
+.sub-menu-list li {
+    margin: 0.5rem 0;
+}
+
+.sub-menu-list a {
+    color: #333; /* Darker color */
+    text-decoration: none;
+}
+
+.sub-menu-list a:hover {
+    color: #ff758c; /* Hover color for sub-menu links */
+}
+
+/* Hero Section */
+.hero {
+    background: url('https://source.unsplash.com/1600x900/?abstract,geometric,vibrant') no-repeat center/cover;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #333; /* Darker text for better visibility */
+    text-align: center;
+    position: relative;
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.hero-content {
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    color: #333; /* Darker heading color */
+}
+
+.hero p {
+    font-size: 1.6rem;
+    margin-bottom: 3rem;
+    font-style: italic;
+    color: #555; /* Darker paragraph color */
+}
+
+/* Buttons */
+.btn {
+    padding: 1.2rem 2.5rem;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    background: #ff7eb3; /* Button color */
+    color: #fff; /* White text */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+    position: relative;
+    margin: 5px; /* Space around buttons */
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Features Section */
+.features {
+    padding: 8rem 0;
+    text-align: center;
+}
+
+.features h2 {
+    margin-bottom: 4rem;
+    color: #ff758c;
+}
+
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 4rem;
+    padding: 0 2rem;
+}
+
+.feature-box {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333; /* Darker text color */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #ff758c;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Testimonials */
+.testimonials {
+    padding: 4rem 2rem;
+    background: rgba(255, 255, 255, 0.5);
+    text-align: center;
+}
+
+blockquote {
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #333; /* Darker color */
+}
+
+/* Product Gallery */
+.product-gallery {
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+.product-gallery h2 {
+    margin-bottom: 2rem;
+    color: #ff758c;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.product-gallery img {
+    max-width: 300px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer */
+footer p {
+	color: white;
+    text-align: center;
+    padding: 2rem 0;
+    background: #333; /* Darker footer */
+    color: #fff; /* Changed to white (hex code) */
+}
+/* Media Queries */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Show menu toggle on small screens */
+    }
+
+    .nav-list {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        flex-direction: column;
+        align-items: center;
+        display: none; /* Hidden by default */
+        z-index: 999;
+    }
+
+    .nav-list.active {
+        display: flex; /* Show when active */
+    }
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8); /* Darker background */
+}
+
+.modal-content {
+    background-color: #fff; /* Keep white background */
+    margin: 10% auto; /* Centered vertically */
+    padding: 40px;
+    border: none;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    width: 90%; /* Responsive width */
+    max-width: 500px; /* Max width for larger screens */
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #ff758c; /* Change color on hover */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal h2 {
+    color: #ff758c; /* Heading color */
+    font-size: 2rem; /* Slightly larger font size */
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+.modal p {
+    color: #333; /* Darker text for better readability */
+    font-size: 1.2rem; /* Increased font size */
+    margin-bottom: 30px; /* Space below the paragraph */
+}
+
+
+
+   body {
+            
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3, #6a0dad, #4d4dff, #ffa07a, #ff69b4, #ba55d3);
+            background-size: 300% 300%;
+            animation: smoothBackground 12s infinite alternate ease-in-out;
+        }
+
+        /* Smooth Background Animation */
+        @keyframes smoothBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Dynamic Shapes */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: moveShapes 8s infinite ease-in-out, colorCycle 6s infinite alternate ease-in-out;
+        }
+
+        .shape.circle {
+            border-radius: 50%;
+        }
+
+        .shape.ellipse {
+            border-radius: 50% / 20%;
+            animation: moveEllipses 10s infinite ease-in-out, colorCycle 5s infinite alternate ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s, 1s;
+        }
+
+        .shape:nth-child(2) {
+            width: 400px;
+            height: 200px;
+            top: 30%;
+            left: 70%;
+            animation-delay: 2s, 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 250px;
+            height: 250px;
+            top: 60%;
+            left: 30%;
+            animation-delay: 1s, 3s;
+        }
+
+        .shape:nth-child(4) {
+            width: 300px;
+            height: 100px;
+            top: 80%;
+            left: 50%;
+            animation-delay: 3s, 4s;
+        }
+
+        .shape:nth-child(5) {
+            width: 350px;
+            height: 350px;
+            top: 20%;
+            left: 80%;
+            animation-delay: 5s, 5s;
+        }
+
+        /* Movement Animations */
+        @keyframes moveShapes {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(30px, -40px) scale(1.2);
+            }
+            50% {
+                transform: translate(-40px, 30px) scale(0.8);
+            }
+            75% {
+                transform: translate(20px, 20px) scale(1.1);
+            }
+        }
+
+        @keyframes moveEllipses {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(30px, -30px) rotate(45deg);
+            }
+            50% {
+                transform: translate(-30px, 30px) rotate(90deg);
+            }
+            75% {
+                transform: translate(20px, 10px) rotate(135deg);
+            }
+        }
+
+        /* Color Animation */
+        @keyframes colorCycle {
+            0% {
+                background: linear-gradient(135deg, #ff758c, #ff94bb);
+            }
+            25% {
+                background: linear-gradient(135deg, #ff94bb, #ffa3cf);
+            }
+            50% {
+                background: linear-gradient(135deg, #ffa3cf, #ff7eb3);
+            }
+            75% {
+                background: linear-gradient(135deg, #ff7eb3, #ff6b81);
+            }
+            100% {
+                background: linear-gradient(135deg, #ff6b81, #ff758c);
+            }
+        }
+
+
