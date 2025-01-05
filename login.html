@@ -3,40 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Dynamic Lava Lamp</title>
     <style>
-        /* Animated Background */
         body {
             margin: 0;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #ff758c, #ff7eb3);
-            background-size: 400% 400%;
-            animation: gradient 10s ease infinite;
+            overflow: hidden;
+            position: relative;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3, #6a0dad, #4d4dff, #ffa07a, #ff69b4, #ba55d3);
+            background-size: 300% 300%;
+            animation: smoothBackground 12s infinite alternate ease-in-out;
         }
 
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* Smooth Background Animation */
+        @keyframes smoothBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
-        /* Login Form Styles */
+        /* Dynamic Shapes */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: moveShapes 8s infinite ease-in-out, colorCycle 6s infinite alternate ease-in-out;
+        }
+
+        .shape.circle {
+            border-radius: 50%;
+        }
+
+        .shape.ellipse {
+            border-radius: 50% / 20%;
+            animation: moveEllipses 10s infinite ease-in-out, colorCycle 5s infinite alternate ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s, 1s;
+        }
+
+        .shape:nth-child(2) {
+            width: 400px;
+            height: 200px;
+            top: 30%;
+            left: 70%;
+            animation-delay: 2s, 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 250px;
+            height: 250px;
+            top: 60%;
+            left: 30%;
+            animation-delay: 1s, 3s;
+        }
+
+        .shape:nth-child(4) {
+            width: 300px;
+            height: 100px;
+            top: 80%;
+            left: 50%;
+            animation-delay: 3s, 4s;
+        }
+
+        .shape:nth-child(5) {
+            width: 350px;
+            height: 350px;
+            top: 20%;
+            left: 80%;
+            animation-delay: 5s, 5s;
+        }
+
+        /* Movement Animations */
+        @keyframes moveShapes {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(30px, -40px) scale(1.2);
+            }
+            50% {
+                transform: translate(-40px, 30px) scale(0.8);
+            }
+            75% {
+                transform: translate(20px, 20px) scale(1.1);
+            }
+        }
+
+        @keyframes moveEllipses {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(30px, -30px) rotate(45deg);
+            }
+            50% {
+                transform: translate(-30px, 30px) rotate(90deg);
+            }
+            75% {
+                transform: translate(20px, 10px) rotate(135deg);
+            }
+        }
+
+        /* Color Animation */
+        @keyframes colorCycle {
+            0% {
+                background: linear-gradient(135deg, #ff758c, #ff94bb);
+            }
+            25% {
+                background: linear-gradient(135deg, #ff94bb, #ffa3cf);
+            }
+            50% {
+                background: linear-gradient(135deg, #ffa3cf, #ff7eb3);
+            }
+            75% {
+                background: linear-gradient(135deg, #ff7eb3, #ff6b81);
+            }
+            100% {
+                background: linear-gradient(135deg, #ff6b81, #ff758c);
+            }
+        }
+
+        /* Login Container */
         .login-container {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(0, 0, 0, 0.8);
             padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             width: 300px;
             text-align: center;
+            position: relative;
+            z-index: 10;
         }
 
         .login-container h2 {
             margin-bottom: 20px;
-            color: #ff758c;
+            color: #ffffff;
         }
 
         .login-container input {
@@ -51,7 +168,7 @@
             padding: 10px;
             border: none;
             border-radius: 5px;
-            background: #ff7eb3;
+            background: #ff758c;
             color: white;
             font-size: 16px;
             cursor: pointer;
@@ -59,13 +176,13 @@
         }
 
         .login-container button:hover {
-            background: #ff758c;
+            background: #ff94bb;
         }
 
         .login-container a {
             display: block;
             margin-top: 15px;
-            color: #007bff;
+            color: #ff94bb;
             text-decoration: none;
         }
 
@@ -75,6 +192,14 @@
     </style>
 </head>
 <body>
+    <!-- Dynamic Shapes -->
+    <div class="shape circle"></div>
+    <div class="shape ellipse"></div>
+    <div class="shape circle"></div>
+    <div class="shape ellipse"></div>
+    <div class="shape circle"></div>
+
+    <!-- Login Form -->
     <div class="login-container">
         <h2>Login</h2>
         <form action="#">
