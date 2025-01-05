@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .cart-items {
+            margin-top: 30px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            background: #fff;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item button {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .cart-item button:hover {
+            background-color: #ff758c;
+        }
+
+        .total {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .btn-checkout, .btn-clear {
+            background-color: #ff758c;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-checkout:hover, .btn-clear:hover {
+            background: #ff94bb;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .popup-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            width: 400px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .popup h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .popup-content input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s;
+        }
+
+        .popup-content input:focus {
+            border-color: #ff758c;
+            outline: none;
+        }
+
+        .popup-content button {
+            background-color: #ff758c;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .popup-content button:hover {
+            background-color: #ff94bb;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.8rem;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .popup-close:hover {
+            color: #ff758c;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Your Cart</h1>
+    </header>
+
+    <div class="cart-items" id="cart-items">
+        <!-- Cart items will be dynamically added here -->
+    </div>
+
+    <div class="total" id="total">
+        <!-- Total price will be shown here -->
+    </div>
+
+    <button class="btn-clear" onclick="clearCart()">Clear Cart</button>
+    <button class="btn-checkout" onclick="showPopup()">Proceed to Checkout</button>
+
+    <!-- Popup form for checkout -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="popup-close" onclick="closePopup()">&times;</span>
+            <h2>Checkout Form</h2>
+            <form id="checkout-form">
+                <input type="text" id="name" placeholder="Full Name" required />
+                <input type="text" id="address" placeholder="Address" required />
+                <input type="text" id="city" placeholder="City" required />
+                <input type="text" id="card-type" placeholder="Card Type" required />
+                <input type="text" id="card-number" placeholder="Card Number" required />
+                <button type="submit">Place Order</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get cart data from localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartItemsContainer = document.getElementById('cart-items');
+        const totalElement = document.getElementById('total');
+
+        // Function to display cart items
+        function displayCart() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const cartItemDiv = document.createElement('div');
+                cartItemDiv.classList.add('cart-item');
+                cartItemDiv.innerHTML = `
+                    <span>${item.product}</span>
+                    <span>$${item.price}</span>
+                    <button onclick="removeItem(${index})">Remove</button>
+                `;
+                cartItemsContainer.appendChild(cartItemDiv);
+
+                total += parseFloat(item.price);
+            });
+
+            totalElement.textContent = `Total: $${total.toFixed(2)}`;
+        }
+
+        // Function to remove item from cart
+        function removeItem(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        }
+
+        // Function to clear the cart
+        function clearCart() {
+            cart = [];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        }
+
+        // Function to show the checkout form popup
+        function showPopup() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        // Function to close the checkout form popup
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        // Handle form submission
+        document.getElementById('checkout-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Get form data
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const cardType = document.getElementById('card-type').value;
+            const cardNumber = document.getElementById('card-number').value;
+
+            // Simulate processing the order
+            alert(`Order placed successfully!\n\nName: ${name}\nAddress: ${address}\nCity: ${city}\nCard Type: ${cardType}\nCard Number: ${cardNumber}`);
+
+            // Clear cart after successful checkout
+            clearCart();
+            closePopup();
+        });
+
+        // Initialize cart display
+        displayCart();
+    </script>
+</body>
+</html>

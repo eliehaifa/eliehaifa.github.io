@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Same styling as before */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            background: linear-gradient(120deg, #ff7eb3, #ff758c, #845ec2, #ffc75f);
+            background-size: 400% 400%;
+            animation: backgroundAnimation 12s infinite alternate ease-in-out;
+        }
+
+        @keyframes backgroundAnimation {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            width: 97%;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffc75f;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffc75f;
+        }
+
+        /* Main Section */
+        main {
+            padding-top: 100px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #ffd166;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .product-card h2 {
+            margin: 15px 0;
+            font-size: 1.5rem;
+            color: #ffc75f;
+        }
+
+        .product-card p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .product-card span {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffd166;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff6f61;
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            padding: 10px 20px;
+            margin-top: 15px;
+            background: #ff758c;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #ff94bb;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        footer a {
+            color: #ffc75f;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Product Store</div>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="products.html"><i class="fas fa-box"></i> Products</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="checkout.html"><i class="fas fa-shopping-cart"></i> Cart (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="hero">
+            <h1>Discover Our Exclusive Products</h1>
+            <p>High-quality items designed to meet your needs.</p>
+        </div>
+        <section class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <span class="badge">New</span>
+                <img src="assets/iphone.jpg" alt="Product 1">
+                <h2>Iphone 15</h2>
+                <p>Powerful performance with sleek design.</p>
+                <span>$699</span>
+                <button class="btn-primary" data-product="Iphone 15" data-price="699">Buy Now</button>
+            </div>
+            <!-- Product 2 -->
+            <div class="product-card">
+                <span class="badge">Sale</span>
+                <img src="assets/earbuds.jpg" alt="Product 2">
+                <h2>Wireless Earbuds</h2>
+                <p>Crystal-clear audio with noise cancellation.</p>
+                <span>$129 <del>$159</del></span>
+                <button class="btn-primary" data-product="Wireless Earbuds" data-price="129">Buy Now</button>
+            </div>
+            <!-- Product 3 -->
+            <div class="product-card">
+                <span class="badge">Popular</span>
+                <img src="assets/laptop.jpg" alt="Product 3">
+                <h2>Gaming Laptop</h2>
+                <p>Ultimate gaming experience with top-notch specs.</p>
+                <span>$1,499</span>
+                <button class="btn-primary" data-product="Gaming Laptop" data-price="1499">Buy Now</button>
+            </div>
+			
+			 </div>
+            <div class="product-card">
+                <img src="assets/watch.jpg" alt="Product 4">
+                <h2>Smartwatch Pro</h2>
+                <p>Track your fitness and stay connected.</p>
+                <span>$249</span>
+                <button class="btn-primary" data-product="smartwatch Pro" data-price="249">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <img src="assets/speaker.jpg" alt="Product 5">
+                <h2>Bluetooth Speaker</h2>
+                <p>Portable and powerful sound on the go.</p>
+                <span>$99</span>
+                <button class="btn-primary" data-product="Bluetooth Speaker" data-price="99">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <img src="assets/tv.jpg" alt="Product 6">
+                <h2>4K Smart TV</h2>
+                <p>Immersive entertainment with vibrant colors.</p>
+                <span>$899</span>
+                <button class="btn-primary" data-product="4k smart tv" data-price="899">Buy Now</button>
+            </div>
+			 <!-- Additional products here -->
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 Product Store. Follow us on 
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+    </footer>
+    
+    <script>
+        // Cart functionality
+        const cartCount = document.getElementById('cart-count');
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Update cart count
+        function updateCartCount() {
+            cartCount.textContent = cart.length;
+        }
+
+        // Add item to cart
+        document.querySelectorAll('.btn-primary').forEach(button => {
+            button.addEventListener('click', function() {
+                const product = this.getAttribute('data-product');
+                const price = this.getAttribute('data-price');
+                cart.push({ product, price });
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+            });
+        });
+
+        // Initialize cart count
+        updateCartCount();
+    </script>
+</body>
+</html>
